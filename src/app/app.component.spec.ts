@@ -1,35 +1,52 @@
-import { TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule, Routes } from '@angular/router';
+
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { AppModule } from './app.module';
+import { APP_BASE_HREF } from '@angular/common';
+import { appRoutes } from './app-routing.module';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  });
+    let component: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                RouterTestingModule,
+                AppModule,
+                CoreModule,
+                LoadingBarHttpClientModule,
+                RouterModule.forRoot(appRoutes),
+            ],
+            providers: [
+                {
+                    provide: APP_BASE_HREF,
+                    useValue: '/',
+                },
+            ],
+        }).compileComponents();
+    }));
 
-  it(`should have as title 'wsbConverter'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('wsbConverter');
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('wsbConverter app is running!');
-  });
+    it('should create the app', () => {
+        expect(component).toBeTruthy();
+    });
+
+    it('should check the `main` content has the class more than 2', async(() => {
+        const testbed = TestBed.createComponent(AppComponent);
+        testbed.detectChanges();
+        const compiled = fixture.debugElement.nativeElement;
+
+        expect(compiled.querySelector('main').classList.length).toBeGreaterThan(2);
+    }));
 });
