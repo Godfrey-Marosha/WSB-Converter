@@ -1,6 +1,8 @@
 <article class="d-flex align-items-start">
-    <h1 class="page-title title--font-size font--roboto-bold" translate="main.title"></h1>
+    <h1> Hi! Please convert here. </h1>
 </article>
+
+<!-- Translation error. Can't figure out why it's not connecting rn-->
 
 <form
     class="conversion-area row"
@@ -12,7 +14,7 @@
     <mat-form-field class="margin-sm-right col-12 col-md-12 col-lg-3 col-xl-3">
         <input
             matInput
-            placeholder="{{ 'main.exchange-field.amount' | translate }}"
+            placeholder="Amount"
             (input)="setFormValidity()"
             [attr.aria-expanded]="'main.exchange-field.amount' | translate"
             formControlName="amountControl"
@@ -22,8 +24,8 @@
     <mat-form-field class="margin-sm-left-right col-12 col-md-12 col-lg-3 col-xl-3">
         <input
             type="text"
-            placeholder="{{ 'main.exchange-field.from' | translate }}"
-            [attr.aria-expanded]="'main.exchange-field.from' | translate"
+            placeholder="From"
+            [attr.aria-expanded]="'main.exchange-field.from' | translate" 
             aria-label="From"
             class="pb-0 from-control"
             matInput
@@ -54,8 +56,8 @@
     <mat-form-field class="margin-sm-left col-12 col-md-12 col-lg-3 col-xl-3">
         <input
             type="text"
-            placeholder="{{ 'main.exchange-field.to' | translate }}"
-            [attr.aria-expanded]="'main.exchange-field.to' | translate"
+            placeholder="To"
+            [attr.aria-expanded]="'main.exchange-field.to' | translate" 
             aria-label="To"
             class="pb-0 to-control"
             matInput
@@ -75,6 +77,15 @@
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
+
+    <button
+        mat-raised-button
+        class="margin-sm-left convert-button"
+        color="primary"
+        type="submit"
+        placeholder="Convert"
+    > Convert
+    </button>
 
 </form>
 

@@ -71,10 +71,10 @@ describe('ConverterComponent', () => {
             });
     }));
 
-    it('should have a header which says `I want to convert`', async(() => {
+    it('should have a header which says `WSB Currency Converter`', async(() => {
         hElement = fixture.debugElement.query(By.css('h1')).nativeElement;
 
-        expect(hElement.innerText).toEqual('I want to convert');
+        expect(hElement.innerText).toEqual('WSB Currency Converter');
     }));
 
     it('should not be able to click `CONVERT` button while it is disabled', async(() => {
